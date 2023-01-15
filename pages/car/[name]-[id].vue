@@ -13,6 +13,10 @@ function toTitleCase(str) {
         }
     );
 }
+
+definePageMeta({
+    layout: 'custom'
+})
 </script>
 <template>
     <!-- CAR DETAIL PAGE -->
