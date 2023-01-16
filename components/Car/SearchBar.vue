@@ -6,7 +6,7 @@ const handleSearch = () => {
     if (!city.value) {
         return cityError.value = true
     } else {
-        navigateTo(`/city/${city}/car`)
+        navigateTo(`/city/${city.value}/car`)
     }
 }
 </script>
