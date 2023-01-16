@@ -16,7 +16,7 @@ definePageMeta({
 <template>
     <!-- CARS PAGE -->
 
-    <div class="mt-32 flex">
+    <div class="mt-32 flex justify-center">
         <!-- CAR SIDE BAR -->
         <CarSideBar />
         <!-- CAR SIDE BAR -->
