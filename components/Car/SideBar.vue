@@ -14,6 +14,12 @@ const updateModal = (key) => {
 
 const onChangeLocation = () => {
     if (!city.value) return
+    if (!isNaN(parseInt(city.value))) {
+        throw createError({
+            statusCode: 404,
+            message: "Invalid City Format"
+        })
+    }
     updateModal("location")
     navigateTo(`/city/${city.value}/car/${route.params.make}`)
     city.value = ""
