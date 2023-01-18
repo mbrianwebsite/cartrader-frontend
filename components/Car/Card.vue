@@ -2,20 +2,19 @@
 import heartFilled from "@/assets/heartFilled.png";
 import heartOutline from "@/assets/heartOutline.png";
 const prop = defineProps({
-    car: Object
-})
+    car: Object,
+    favored: Boolean,
 
-const favored = useState('favored', () => {
-    return false
 })
+const emit = defineEmits(['favor'])
 </script>
 
 <template>
     <div class="shadow border w-[800px] overflow-hidden mb-5 cursor-pointer h-[200px]">
-        <img @click="favored = !favored" class="absolute ml-5 mt-5 w-10 h-fit z-20"
+        <img @click="$emit('favor', car.id)" class="absolute ml-5 mt-5 w-10 h-fit z-20"
             :src="favored ? heartFilled : heartOutline" alt="" />
         <div class="flex h-full" @click="navigateTo(`/car/${car.name}-${car.id}`)">
-            <nuxt-img :src="car.url" alt="" class="w-[300px] h-full" />
+            <nuxt-img loading="lazy" :src="car.url" alt="" class="w-[300px] h-full" />
             <div class="p-4 flex flex-col">
                 <div>
                     <h1 class="text-2xl text-blue-700">{{ car.name }}</h1>
