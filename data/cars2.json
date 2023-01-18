@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Ferrari 70",
+    "price": "84,777",
+    "url": "ferrari-70th.jpg",
+    "seats": 5,
+    "miles": "14,666",
+    "features": [
+      "No Accidents",
+      "Low KM",
+      "Vehicle Detailed",
+      "Leather Interior"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis odio et laboriosam!"
+  },
+  {
+    "id": 2,
+    "name": "Ford Mustang GT",
+    "price": "455,000",
+    "url": "ford-mustang-gt.jpg",
+    "seats": 5,
+    "miles": "53,666",
+    "features": [
+      "No Accidents",
+      "Low KM",
+      "Vehicle Detailed",
+      "Leather Interior"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis odio et laboriosam! Numquam ut rem, blanditiis est rerum tenetur maxime delectus"
+  },
+  {
+    "id": 4,
+    "name": "BMW 2023 White",
+    "price": "180,434",
+    "url": "bmw-white.jpg",
+    "seats": 5,
+    "miles": "0",
+    "features": [
+      "No Accidents",
+      "Low KM",
+      "Vehicle Detailed",
+      "Leather Interior"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis odio et"
+  },
+  {
+    "id": 99,
+    "name": "Range Rover Sport",
+    "price": "84,777",
+    "url": "https://www.carhelpcanada.com/wp-content/uploads/2019/12/2020-Range-Rover-Evoque-2.jpg",
+    "seats": 5,
+    "miles": "14,666",
+    "features": [
+      "No Accidents",
+      "Low KM",
+      "Vehicle Detailed",
+      "Leather Interior"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis odio et laboriosam!"
+  }
+]
