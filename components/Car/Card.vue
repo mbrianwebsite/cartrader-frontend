@@ -1,13 +1,20 @@
 <script setup>
+import heartFilled from "@/assets/heartFilled.png";
+import heartOutline from "@/assets/heartOutline.png";
 const prop = defineProps({
     car: Object
+})
+
+const favored = useState('favored', () => {
+    return false
 })
 </script>
 
 <template>
-    <div class="shadow border w-[800px] overflow-hidden mb-5 cursor-pointer h-[200px]"
-        @click="navigateTo(`/car/${car.name}-${car.id}`)">
-        <div class="flex h-full">
+    <div class="shadow border w-[800px] overflow-hidden mb-5 cursor-pointer h-[200px]">
+        <img @click="favored = !favored" class="absolute ml-5 mt-5 w-10 h-fit z-20"
+            :src="favored ? heartFilled : heartOutline" alt="" />
+        <div class="flex h-full" @click="navigateTo(`/car/${car.name}-${car.id}`)">
             <nuxt-img :src="car.url" alt="" class="w-[300px] h-full" />
             <div class="p-4 flex flex-col">
                 <div>
