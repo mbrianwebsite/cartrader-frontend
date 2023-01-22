@@ -1,28 +1,36 @@
 <script setup>
 const route = useRoute()
+
+const { data: car } = await useFetchCar(route.params.id)
+
 const { toTitleCase } = useUtilities()
-const { cars } = useCars()
+// const { cars } = useCars()
 
 useHead({
     title: toTitleCase(route.params.name)
 })
 
-const car = computed(() => {
-    return cars.find((c) => {
-        return c.id === parseInt(route.params.id)
-    })
-})
-
-if (!car.value) {
-    throw createError({
-        statusCode: 404,
-        message: `Car with id of ${route.params.id} does not exist`
-    })
-}
-
 definePageMeta({
-    layout: 'custom'
+    layout: 'custom',
+    // validate({ params }) {
+    //     const { cars } = useCars()
+    //     const car = cars.find((c) => c.id === parseInt(params))
+    //     if (!car) {
+    //         throw createError({
+    //             statusCode: 404,
+    //             message: `Car with id of ${route.params.id} does not exist`
+    //         })
+    //     }
+    // }
 })
+
+// const car = computed(() => {
+//     return cars.find((c) => {
+//         return c.id === parseInt(route.params.id)
+//     })
+// })
+
+
 </script>
 <template>
     <div v-if="car">
