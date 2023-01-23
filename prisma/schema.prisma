@@ -14,16 +14,17 @@ datasource db {
 model Car {
   id              Int         @id @default(autoincrement())
   name            String            
+  year            Int            
   numberOfSeats   Int             
   miles           Int             
   price           Int             
-  image           Int
+  image           String
   features        String[]
   description     String             
   city            String             
   model           String             
   make            String
-  listerId        String
+  listerId        Int
   messages        Message[]             
 }
 
