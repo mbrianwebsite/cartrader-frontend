@@ -1,4 +1,5 @@
 <script setup>
+
 definePageMeta({
   layout: "custom",
   middleware: [
@@ -7,6 +8,8 @@ definePageMeta({
 });
 
 const { makes } = useCars();
+
+const user = useSupabaseUser()
 
 const info = useState("adInfo", () => {
   return {
@@ -19,9 +22,11 @@ const info = useState("adInfo", () => {
     seats: "",
     features: "",
     description: "",
-    image: null,
+    image: "fasfasfas",
   };
 });
+
+const errorMessage = ref("")
 
 const onChangeInput = (data, name) => {
   info.value[name] = data;
@@ -42,29 +47,70 @@ const inputs = [
   },
   {
     id: 3,
+    title: "Price *",
+    name: "price",
+    placeholder: "1000",
+  },
+  {
+    id: 4,
     title: "Miles *",
     name: "miles",
     placeholder: "10000",
   },
   {
-    id: 4,
+    id: 5,
     title: "City *",
     name: "city",
     placeholder: "Austin",
   },
   {
-    id: 5,
+    id: 6,
     title: "Number of Seats *",
     name: "seats",
     placeholder: "5",
   },
   {
-    id: 6,
+    id: 7,
     title: "Features *",
     name: "features",
     placeholder: "Leather Interior, No Accidents",
   },
 ];
+
+
+const isButtonDisabled = computed(() => {
+  for (let key in info.value) {
+    if (!info.value[key]) return true
+  }
+  return false
+})
+
+const handelSubmit = async () => {
+  const body = {
+    ...info.value,
+    city: info.value.city.toLowerCase(),
+    features: info.value.features.split(","),
+    numberOfSeats: parseInt(info.value.seats),
+    miles: parseInt(info.value.miles),
+    price: parseInt(info.value.price),
+    year: parseInt(info.value.year),
+    name: `${info.value.make} ${info.value.model}`,
+    listerId: user.value.id,
+    image: "afasafasafas"
+  }
+
+  delete body.seats
+
+  try {
+    const response = await $fetch("/api/car/listings", {
+      method: "post",
+      body
+    })
+    navigateTo('/profile/listings')
+  } catch (error) {
+    errorMessage.value = error.statusMessage
+  }
+}
 </script>
 
 
@@ -79,6 +125,9 @@ const inputs = [
         :placeholder="input.placeholder" @change-input="onChangeInput" />
       <CarAdTextarea title="Description *" name="description" placeholder="" @change-input="onChangeInput" />
       <CarAdImage @change-input="onChangeInput" />
+      <button :disabled="isButtonDisabled" @click="handelSubmit"
+        class=" disabled:cursor-not-allowed mt-8 px-4 py-2 bg-blue-400 text-white font-bold">Submit</button>
+      <p v-if="errorMessage" class="mt-8 text-red-400">{{ errorMessage }}</p>
     </div>
   </div>
 </template>

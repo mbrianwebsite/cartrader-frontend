@@ -15,7 +15,7 @@ const shcema = Joi.object({
   description: Joi.string().required(),
   miles: Joi.number().required().min(0),
   price: Joi.number().required().min(0),
-  listerId: Joi.number().min(0).required(),
+  listerId: Joi.string().required(),
   city: Joi.string().min(2).required(),
   make: Joi.string().required(),
   model: Joi.string().required(),
