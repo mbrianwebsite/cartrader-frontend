@@ -11,6 +11,8 @@ const { makes } = useCars();
 
 const user = useSupabaseUser()
 
+const supabase = useSupabaseClient()
+
 const info = useState("adInfo", () => {
   return {
     make: "",
@@ -22,7 +24,7 @@ const info = useState("adInfo", () => {
     seats: "",
     features: "",
     description: "",
-    image: "fasfasfas",
+    image: "",
   };
 });
 
@@ -86,6 +88,8 @@ const isButtonDisabled = computed(() => {
 })
 
 const handelSubmit = async () => {
+  const filename = Math.floor(Math.random() * 100000000000000000000)
+  const { data, error } = await supabase.storage.from("images").upload("public/" + filename, info.value.image)
   const body = {
     ...info.value,
     city: info.value.city.toLowerCase(),
@@ -96,7 +100,7 @@ const handelSubmit = async () => {
     year: parseInt(info.value.year),
     name: `${info.value.make} ${info.value.model}`,
     listerId: user.value.id,
-    image: "afasafasafas"
+    image: data.path
   }
 
   delete body.seats
@@ -109,6 +113,7 @@ const handelSubmit = async () => {
     navigateTo('/profile/listings')
   } catch (error) {
     errorMessage.value = error.statusMessage
+    await supabase.storage.from("images").remove(data.path)
   }
 }
 </script>
